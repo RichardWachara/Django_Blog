@@ -6,14 +6,14 @@ from blogs.models import Category, Blog
 
 def home(request):
     # Object.all() function fetches all the categories in the database.
-    categories = Category.objects.all()
+    # categories = Category.objects.all()
     featured_posts = Blog.objects.filter(is_featured=True,status="published")
     posts = Blog.objects.filter(is_featured=False,status="published")
     # print(featured_posts[0].featured_image)
     # The context is a dictionary with key:value pairs the key is what we use to access the data provided in the value.
     
     context = {
-        'categories': categories,
+        # 'categories': categories, - use the context processor
         'featured_posts': featured_posts,
         'posts':posts
     }
