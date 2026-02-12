@@ -14,6 +14,13 @@ class BlogAdmin(admin.ModelAdmin):
 
 
 class AboutAdmin(admin.ModelAdmin):
+    # Adding Permission to make sure we only add one About
+    def has_add_permission(self, request):
+        count = About.objects.all().count()
+        if count == 0:
+            return True
+        return False
+    
     list_display = ("about_heading","about_description")
 
 admin.site.register(Category)
