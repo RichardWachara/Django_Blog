@@ -172,7 +172,9 @@
       <div class="nav-scroller py-1 mb-3 border-bottom">
         <nav class="nav nav-underline justify-content-between">
           {% for category in categories %}
-          <a class="nav-item nav-link link-body-emphasis" href="{% url 'posts_by_category' category.id %}"
+          <a
+            class="nav-item nav-link link-body-emphasis"
+            href="{% url 'posts_by_category' category.id %}"
             >{{ category }}</a
           >
           {% endfor %}
@@ -181,9 +183,18 @@
     </div>
 
     <!-- Main Part -->
-     {% block content %}
-
-     {% endblock  %}
+    {% block content %} {% endblock %}
+    <!-- Side widget-->
+    <div class="card mb-4 p-3">
+      <h4 class="font-italic">Follow Us</h4>
+      <ol class="list-unstyled">
+        {% for social_link in social_links %}
+        <li>
+          <a href="{{ social_link.link_url }}">{{ social_link.link_header}}</a>
+        </li>
+      </ol>
+      {% endfor %}
+    </div>
     <!-- Footer Part -->
     <footer class="py-5 text-center text-body-secondary bg-body-tertiary">
       <p>
