@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 from blogs.models import Blog, Category
+from django.db.models import Q
 
 # Create your views here.
 # Same name as the '<int:category_id>/'
@@ -34,3 +35,12 @@ def single_post_view(request,slug):
         'single_post': single_post
     }
     return render(request, 'blog.html', context=context)
+
+def search(request):
+    keyword = request.GET.get('keyword')
+    blogs = Blog.objects.filter(Q(title__icontains=keyword) | Q(short_description__icontains=keyword) | Q(blog_body__icontains=keyword), status='published')
+    context = {
+        'blogs':blogs,
+        'keyword': keyword
+    }
+    return render(request, 'search.html',context=context)
