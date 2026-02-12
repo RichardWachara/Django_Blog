@@ -1,5 +1,6 @@
 # from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from blog_main.forms import RegistrationForm
 from blogs.models import Category, Blog
 # def home(request):
 #     return HttpResponse("<h2>Home Page</h2>")
@@ -20,3 +21,19 @@ def home(request):
 
     # We then provide the context to the page and we can access it on the page when we do this
     return render(request,"index.html",context=context)
+
+
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('Home')
+    else:
+        form = RegistrationForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'register.html',context=context)
+
+# richardwachara@2

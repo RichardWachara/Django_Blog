@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     # INSTALLED CUSTOM APPS
 
     'blogs',
+    'crispy_forms',
+    "crispy_bootstrap4"
+
 ]
 
 MIDDLEWARE = [
@@ -129,4 +132,4 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/' 
 # Where the media uploaded by the user will be stored in our project.
 MEDIA_ROOT = BASE_DIR / 'media'
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
