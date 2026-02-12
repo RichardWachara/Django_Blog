@@ -19,11 +19,13 @@ from django.urls import path, include
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from blogs import views as blog_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home, name="Home"),
     path('category/', include('blogs.urls')),
+    path('<slug:slug>/', blog_view.single_post_view, name='single_post_view'),
 ]
 
 if settings.DEBUG:
